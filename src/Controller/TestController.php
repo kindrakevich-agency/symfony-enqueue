@@ -1,34 +1,34 @@
 <?php
+namespace App\Controller;
 
-namespace App\Command;
-
-use Enqueue\AsyncCommand\Commands;
-use Symfony\Component\Console\Input\ArrayInput;
-use Enqueue\AsyncCommand\RunCommand;
 use Enqueue\Client\ProducerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
-class EnqueueCommand extends Command
+final class TestController extends AbstractController
 {
+
     /**
      * @var ProducerInterface
      */
     private $producer;
 
     /**
+     * FireEventService constructor.
      * @param ProducerInterface $producer
      */
     public function __construct(ProducerInterface $producer)
     {
         $this->producer = $producer;
-
-        parent::__construct('run:enqueue');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    /**
+     * @Route("/test")
+     */
+    public function indexAction()
     {
         // Models array
         $models = [];
@@ -46,8 +46,8 @@ class EnqueueCommand extends Command
           $this->producer->sendEvent("model_proccess", ['model' => $model->filter('title')->text()]);
         });
 
-        $output->writeln('Total models: '.count($models));
-
-        return 0;
+        $response = new JsonResponse($models);
+        $response->setEncodingOptions( $response->getEncodingOptions() | JSON_PRETTY_PRINT );
+        return $response;
     }
 }

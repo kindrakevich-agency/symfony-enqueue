@@ -1,6 +1,7 @@
 enqueue:
     default:
         transport: '%env(ENQUEUE_DSN)%'
-        client: ~
+        client:
+            traceable_producer: true
         async_commands:
             enabled: true
