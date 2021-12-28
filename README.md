@@ -7,6 +7,6 @@
 
 Check log file in var/log/dev.log
 
-After run command ./bin/console demo:enqueue - enqueue execute producer->sendCommand(Commands::RUN_COMMAND, new RunCommand('demo:hello', ['77web']));
+After run command **./bin/console demo:enqueue** - enqueue execute **producer->sendCommand(Commands::RUN_COMMAND, new RunCommand('demo:hello', ['77web']));**
 
-See: /src/Command/EnqueueCommand.php
+See: **/src/Command/EnqueueCommand.php**
