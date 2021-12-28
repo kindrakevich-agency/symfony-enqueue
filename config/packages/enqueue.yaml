@@ -1,0 +1,6 @@
+enqueue:
+    default:
+        transport: '%env(ENQUEUE_DSN)%'
+        client: ~
+        async_commands:
+            enabled: true

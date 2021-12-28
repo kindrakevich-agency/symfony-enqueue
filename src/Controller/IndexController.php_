@@ -1,0 +1,32 @@
+<?php
+
+declare(strict_types = 1);
+
+namespace App\Controller;
+
+use Enqueue\Client\ProducerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Annotation\Route;
+
+final class IndexController extends AbstractController
+{
+    /**
+     * @Route("/", name="homepage")
+     */
+    public function indexAction()
+    {
+        /** @var ProducerInterface $producer */
+        //$producer = $this->get('enqueue.producer');
+        //$producer->sendEvent('One message for sending email');
+
+        // https://github.com/kayneth/newsletter-symfony-equeue
+        // https://github.com/php-enqueue/enqueue-dev/blob/master/docs/bundle/quick_tour.md
+        // https://github.com/77web/symfony4-async-command-demo
+        // https://github.com/damax-solutions/enqueue-simple-bus-queue-interop
+
+        // https://github.com/php-enqueue/enqueue-dev/issues/267
+
+        //return new JsonResponse('message pushed to queue');
+    }
+}
