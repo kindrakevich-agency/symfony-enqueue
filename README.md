@@ -6,4 +6,7 @@
 4. ./bin/console run:enqueue or navigate to /test
 
 See: **src/Command/EnqueueCommand.php**
+
 See: **src/Processor/TestSenderProcessor.php**
+
+![symfony 4.4 + enqueue](/assets/images/profiler.png)
